@@ -2,6 +2,7 @@ package com.foro_hub.api.domain.topico;
 
 import com.foro_hub.api.domain.usuario.Usuario;
 import jakarta.persistence.*;
+import jakarta.validation.Valid;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -29,4 +30,13 @@ public class Topico {
     @JoinColumn(name = "usuario_id")
     private Usuario autor;
 
+    public Topico(@Valid DatosCrearTopico datos) {
+        this.id = null;
+        this.titulo = datos.titulo();
+        this.mensaje = datos.mensaje();
+        this.fechaCreacion = LocalDateTime.now();
+        this.activo = true;
+
+        this.autor = new Usuario(datos.autorId());
+    }
 }

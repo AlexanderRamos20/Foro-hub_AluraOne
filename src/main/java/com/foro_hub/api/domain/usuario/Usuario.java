@@ -3,10 +3,12 @@ package com.foro_hub.api.domain.usuario;
 import com.foro_hub.api.domain.topico.Topico;
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.List;
 
+@NoArgsConstructor
 @Getter
 @Setter
 @Entity
@@ -21,4 +23,8 @@ public class Usuario {
 
     @OneToMany(mappedBy = "autor", fetch = FetchType.LAZY)
     private List<Topico> topicos;
+
+    public Usuario(Long id) {
+        this.id = id;
+    }
 }
